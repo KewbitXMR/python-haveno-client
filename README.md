@@ -1,4 +1,4 @@
-# Haveno Client (Python)
+# Haveno Client
 
 The Haveno Client is a Python gRPC client that allows you to interact with Haveno, a decentralized cryptocurrency trading platform. This client enables you to connect to Haveno servers, access market data, manage accounts, and perform trades programmatically.
 
@@ -36,7 +36,6 @@ The Haveno Client is a Python gRPC client that allows you to interact with Haven
 
 ```bash
    pip install -r requirements.txt
-   {{{bash}}}
 ```
 
 ## Usage
@@ -49,7 +48,7 @@ Here is an example of how to initialize the client and connect to a Haveno serve
    from haveno_client import HavenoClient
 
    # Create a Haveno client instance and connect to the server
-   client = HavenoClient(host='localhost', port=50051, password='your_password', use_socks5=True, socks5_host='127.0.0.1', socks5_port=9050)
+   client = HavenoClient(host='localhost', port=3201, password='your_password', use_socks5=True, socks5_host='127.0.0.1', socks5_port=9050)
 
    # Perform operations using the client
    account_info = client.account_client.get_account_info('account_id')

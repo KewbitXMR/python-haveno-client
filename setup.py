@@ -21,14 +21,14 @@ from setuptools import setup, find_packages
 
 setup(
     name='haveno-client',  # Package name
-    version='0.1.0',
+    version='0.1.2',
     description='A client for interacting with the Haveno daemon.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/KewbitXMR/python-haveno-client',  # Replace with the actual URL
     author='Kewbit',
     author_email='kewbitxmr@protonmail.com',
-    license='MIT',
+    license='AGPL v3',
     packages=find_packages(),  # Automatically find package directories
     install_requires=[
         'grpcio',
