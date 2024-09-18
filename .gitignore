@@ -1,0 +1,10 @@
+# Ignore virtual environment
+venv/
+
+# Other common ignores
+__pycache__/
+*.pyc
+*.pyo
+dist/
+build/
+*.egg-info/
