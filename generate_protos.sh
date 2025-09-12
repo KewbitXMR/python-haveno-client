@@ -20,12 +20,13 @@
 
 # Directory paths
 PROTO_DIR="./protos"
-OUT_DIR="./haveno_client"
+OUT_DIR="./haveno_client/proto2"
 
-# Generate Python code from grpc.proto
-python3 -m grpc_tools.protoc -I$PROTO_DIR --python_out=$OUT_DIR --grpc_python_out=$OUT_DIR $PROTO_DIR/grpc.proto
+# Generate Python code from both grpc.proto and pb.proto in one command
+python3 -m grpc_tools.protoc \
+    -I$PROTO_DIR \
+    --python_out=$OUT_DIR \
+    --grpc_python_out=$OUT_DIR \
+    $PROTO_DIR/grpc.proto $PROTO_DIR/pb.proto
 
-# Generate Python code from pb.proto
-python3 -m grpc_tools.protoc -I$PROTO_DIR --python_out=$OUT_DIR --grpc_python_out=$OUT_DIR $PROTO_DIR/pb.proto
-
-echo "gRPC code generation completed."
+echo "gRPC and Protobuf code generation completed."

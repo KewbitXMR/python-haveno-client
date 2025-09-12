@@ -117,3 +117,6 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 - The Haveno development team for building the Haveno decentralized exchange.
 - Contributors to the `grpcio` and `pysocks` libraries.
 - **THIS PROJECT IS A WORK IN PROGRESS, ITS IS NOT YET SUITABLE FOR PRODUCTION ENVIRONMENTS**
+
+## Contributors
+The main contributor for this project is [Kewbit](https://kewbit.org) for the purpose of making a funtional and effecient interface for the Django website on the original haveno.com but now used on [haveno.app](https://haveno.app).

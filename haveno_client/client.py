@@ -1,7 +1,7 @@
 import grpc
 import socks
 from . import grpc_pb2, grpc_pb2_grpc
-from .stubs import AccountClient, TradesClient, OffersClient  # Import your modular stubs
+from .clients import AccountClient, TradesClient, OffersClient  # Import your modular stubs
 
 class HavenoClient:
     def __init__(self, host, port, password, use_socks5=False, socks5_host='127.0.0.1', socks5_port=9050):
