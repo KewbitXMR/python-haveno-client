@@ -1,15 +1,60 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=68", "wheel", "build"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "haveno_client"
+name = "haveno-client"
 version = "0.1.9"
-description = "Python client for Haveno APIs"
+description = "A client for interacting with the Haveno daemon."
 readme = "README.md"
 requires-python = ">=3.8"
-license = { text = "GPL-3.0-or-later" }
+license = { text = "AGPL-3.0-or-later" }       # choose AGPL to match your prior setup.py
+authors = [
+  { name = "Kewbit", email = "support@haveno.app" }
+]
+keywords = ["haveno", "monero", "p2p", "exchange"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+]
 
+dependencies = [
+  "grpcio",
+  "grpcio-tools",
+  "socks",
+]
+
+# Nice discoverable links on PyPI
+[project.urls]
+Homepage = "https://haveno.app"
+Repository = "https://git.haveno.app/haveno-network/python-haveno-client"
+Issues = "https://git.haveno.app/haveno-network/python-haveno-client/issues"
+Documentation = "https://haveno.app/documentation"
+Changelog = "https://haveno.app/changelog"
+Funding = "https://haveno.app/donate"
+
+# Optional console scripts
+[project.scripts]
+haveno-client = "haveno_client.cli:main"
+
+# Package discovery (src layout)
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["haveno_client*"]
+
+[tool.setuptools]
+include-package-data = true
+
+# If you need to include non-Python files shipped with the package, specify here.
+# [tool.setuptools.package-data]
+# "haveno_client" = ["py.typed", "*.proto", "data/*.json"]
