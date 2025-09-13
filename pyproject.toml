@@ -3,8 +3,8 @@ requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
+dynamic = ["version"]
 name = "haveno-client"
-version = "0.2.1"
 description = "A client for interacting with the Haveno daemon."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -28,7 +28,7 @@ classifiers = [
 # Runtime dependencies (only what end users need at install time)
 dependencies = [
   "grpcio",
-  "pysocks",
+  "socks",
   "protobuf"
 ]
 
