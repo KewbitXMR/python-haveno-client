@@ -16,7 +16,7 @@ jobs:
           # Build with a modern Python; artifacts can still target older
           # versions if your package is pure-Python and metadata says so.
           python-version: '3.12.5'
-      - run: python -m pip install --upgrade pip build
+      - run: python -m pip install --upgrade pip setuptools wheel build
       - run: python -m build
       - uses: actions/upload-artifact@v4
         with:

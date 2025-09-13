@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "haveno_client"
+version = "0.1.9"
+description = "Python client for Haveno APIs"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "GPL-3.0-or-later" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["haveno_client*"]
