@@ -21,7 +21,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='haveno-client',  # Package name
-    version='0.1.6',
+    version='0.1.7',
     description='A client for interacting with the Haveno daemon.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
