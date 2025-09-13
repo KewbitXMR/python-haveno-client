@@ -1,14 +1,14 @@
 [build-system]
-requires = ["setuptools>=68", "wheel", "build"]
+requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "haveno-client"                     # distribution name (hyphen OK)
+dynamic = ["version"]
+name = "haveno-client"
 version = "0.2.1"
 description = "A client for interacting with the Haveno daemon."
 readme = "README.md"
-requires-python = ">=3.8"                 # matches classifiers below
-license = { text = "AGPL-3.0-or-later" }
+license = { file = "LICENSE" }
 authors = [ { name = "Kewbit", email = "support@haveno.app" } ]
 keywords = ["haveno", "monero", "p2p", "exchange"]
 classifiers = [
@@ -29,7 +29,8 @@ classifiers = [
 # Runtime dependencies (only what end users need at install time)
 dependencies = [
   "grpcio",
-  "socks",
+  "pysocks",
+  "protobuf"
 ]
 
 [project.optional-dependencies]

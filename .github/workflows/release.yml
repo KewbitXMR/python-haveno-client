@@ -1,12 +1,15 @@
 name: Build & Publish to PyPI
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
     permissions:
       contents: read
       id-token: write   # Required for PyPI Trusted Publishing (OIDC)
@@ -18,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install build tools
         run: |
@@ -28,7 +31,6 @@ jobs:
         run: |
           python -m build
 
-      # Optional: quick sanity check of wheel METADATA before publishing
       - name: Show wheel METADATA (debug)
         run: |
           python - <<'PY'
@@ -41,15 +43,13 @@ jobs:
                       print(z.read(metas[0]).decode().splitlines()[:12])
           PY
 
-      - name: Publish to PyPI (Trusted Publishing)
+      - name: pypi-publish
         uses: pypa/gh-action-pypi-publish@v1.10.3
         with:
           packages-dir: dist
-          # skip-existing: true  # uncomment to avoid failing when files already exist
-
-      # ---- If you need to publish to TestPyPI instead, use this step instead of the one above ----
-      # - name: Publish to TestPyPI (Trusted Publishing)
-      #   uses: pypa/gh-action-pypi-publish@v1.10.3
-      #   with:
-      #     packages-dir: dist
-      #     repository-url: https://test.pypi.org/legacy/
+          repository-url: https://upload.pypi.org/legacy/
+          user: __token__
+          password: ${{ secrets.PYPI_TOKEN }}
+          skip-existing: true
+          verify-metadata: false
+          verbose: true
