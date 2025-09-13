@@ -2,17 +2,18 @@ name: Build & Publish to PyPI
 
 on:
   push:
-    tags:
-      - 'v*'
+    tags: [ 'v*' ]   # e.g. v0.2.2
+  release:
+    types: [ published ]
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     environment:
       name: pypi
+      url: https://pypi.org/p/haveno-client/
     permissions:
       contents: read
-      id-token: write   # Required for PyPI Trusted Publishing (OIDC)
 
     steps:
       - name: Check out repository
@@ -21,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Install build tools
         run: |
@@ -31,25 +32,10 @@ jobs:
         run: |
           python -m build
 
-      - name: Show wheel METADATA (debug)
-        run: |
-          python - <<'PY'
-          import zipfile, glob
-          for whl in glob.glob('dist/*.whl'):
-              print('Inspecting', whl)
-              with zipfile.ZipFile(whl) as z:
-                  metas = [n for n in z.namelist() if n.endswith('.dist-info/METADATA')]
-                  if metas:
-                      print(z.read(metas[0]).decode().splitlines()[:12])
-          PY
-
-      - name: pypi-publish
+      - name: Publish to PyPI (token auth)
         uses: pypa/gh-action-pypi-publish@v1.10.3
         with:
           packages-dir: dist
-          repository-url: https://upload.pypi.org/legacy/
-          user: __token__
-          password: ${{ secrets.PYPI_TOKEN }}
+          password: ${{ secrets.PYPI_TOKEN }}  # create this repo secret with a real PyPI token (pypi-...)
           skip-existing: true
-          verify-metadata: false
-          verbose: true
+          verify-metadata: true

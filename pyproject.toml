@@ -1,13 +1,14 @@
 [build-system]
-requires = ["setuptools >= 77.0.3"]
+requires = ["setuptools>=68", "wheel", "build"]
 build-backend = "setuptools.build_meta"
 
 [project]
-dynamic = ["version"]
 name = "haveno-client"
+version = "0.2.2"
 description = "A client for interacting with the Haveno daemon."
 readme = "README.md"
-license = { file = "LICENSE" }
+requires-python = ">=3.8"
+license = { text = "AGPL-3.0-or-later" }
 authors = [ { name = "Kewbit", email = "support@haveno.app" } ]
 keywords = ["haveno", "monero", "p2p", "exchange"]
 classifiers = [
@@ -25,15 +26,13 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 
-# Runtime dependencies (only what end users need at install time)
+# End-user install dependencies
 dependencies = [
   "grpcio",
   "socks",
-  "protobuf"
 ]
 
 [project.optional-dependencies]
-# Dev tools you don't want installed for end users by default
 codegen = ["grpcio-tools"]
 
 [project.urls]
