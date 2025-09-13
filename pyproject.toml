@@ -8,7 +8,7 @@ version = "0.2.0"
 description = "A client for interacting with the Haveno daemon."
 readme = "README.md"
 requires-python = ">=3.8"
-license = { text = "AGPL-3.0-or-later" }       # choose AGPL to match your prior setup.py
+license = { text = "AGPL-3.0-or-later" }
 authors = [
   { name = "Kewbit", email = "support@haveno.app" }
 ]
@@ -34,7 +34,6 @@ dependencies = [
   "socks",
 ]
 
-# Nice discoverable links on PyPI
 [project.urls]
 Homepage = "https://haveno.app"
 Repository = "https://git.haveno.app/haveno-network/python-haveno-client"
@@ -43,18 +42,12 @@ Documentation = "https://haveno.app/documentation"
 Changelog = "https://haveno.app/changelog"
 Funding = "https://haveno.app/donate"
 
-# Optional console scripts
 [project.scripts]
 haveno-client = "haveno_client.cli:main"
 
-# Package discovery (src layout)
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["haveno_client*"]
 
 [tool.setuptools]
 include-package-data = true
-
-# If you need to include non-Python files shipped with the package, specify here.
-# [tool.setuptools.package-data]
-# "haveno_client" = ["py.typed", "*.proto", "data/*.json"]
