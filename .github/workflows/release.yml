@@ -2,32 +2,40 @@ name: Publish Python Package
 
 on:
   push:
-    tags:
-      - 'v*'  # Triggers the workflow on tag push with a version pattern (e.g., v1.0.0)
+    tags: ['v*']
+  release:
+    types: [published]
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-
+    outputs:
+      sdist: ${{ steps.set.outputs.sdist }}
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.x'  # Specify your Python version
+          python-version: '3.6'
+      - run: python -m pip install --upgrade pip build
+      - run: python -m build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
 
-      - name: Install build tools
-        run: |
-          python -m pip install --upgrade pip
-          pip install build twine
-
-      - name: Build the package
-        run: python -m build
-
-      - name: Publish to PyPI
-        env:
-          TWINE_USERNAME: __token__  # Use the special username '__token__'
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}  # Reference the secret
-        run: python -m twine upload dist/*
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: Publish to PyPI (Trusted Publishing)
+        uses: pypa/gh-action-pypi-publish@v1.10.3
+        with:
+          packages-dir: dist

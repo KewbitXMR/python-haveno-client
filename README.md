@@ -1,6 +1,6 @@
-# Haveno Client
+# Python Haveno Client
 
-The Haveno Client is a Python gRPC client that allows you to interact with Haveno, a decentralized cryptocurrency trading platform. This client enables you to connect to Haveno servers, access market data, manage accounts, and perform trades programmatically.
+The Haveno Client is a Python gRPC client that allows you to interact with the Haveno daemon, a decentralized cryptocurrency trading platform. This client enables you to connect to Haveno servers, access market data, manage accounts, and perform trades programmatically.
 
 ## Features
 
@@ -21,7 +21,7 @@ The Haveno Client is a Python gRPC client that allows you to interact with Haven
 1. **Clone the repository**:
 
 ```bash
-   git clone https://github.com/yourusername/python-haveno-client.git
+   git clone https://github.com/KewbitXMR/python-haveno-client.git
    cd python-haveno-client
 ```
 
